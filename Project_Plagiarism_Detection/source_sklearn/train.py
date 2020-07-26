@@ -5,6 +5,7 @@ import os
 import pandas as pd
 
 from sklearn.externals import joblib
+from sklearn.ensemble import RandomForestClassifier
 
 ## TODO: Import any additional libraries you need to define a model
 
@@ -40,6 +41,9 @@ if __name__ == '__main__':
     
     ## TODO: Add any additional arguments that you will need to pass into your model
     
+    parser.add_argument('--n_estimators', type=int, default=500)
+    parser.add_argument('--n_jobs', type=int, default=-1)
+    
     # args holds all passed-in arguments
     args = parser.parse_args()
 
@@ -56,11 +60,11 @@ if __name__ == '__main__':
     
 
     ## TODO: Define a model 
-    model = None
+    model = RandomForestClassifier(n_estimators=args.n_estimators, n_jobs=args.n_jobs)
     
     
     ## TODO: Train the model
-    
+    model.fit(train_x, train_y)
     
     
     ## --- End of your code  --- ##
